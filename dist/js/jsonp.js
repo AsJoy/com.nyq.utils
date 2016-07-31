@@ -17,7 +17,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 /*
 * 实现jsonp
 * */
-
 var Jsonp = function () {
     function Jsonp(args) {
         // code
@@ -28,7 +27,7 @@ var Jsonp = function () {
     _createClass(Jsonp, [{
         key: "date",
         value: function date() {
-            return 123;
+            return new Date().getTime();
         }
     }, {
         key: "jsonp",

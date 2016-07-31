@@ -9,7 +9,7 @@ class Jsonp {
     }
 
      date(){
-        return 123;
+        return (new Date()).getTime();
     }
     
     jsonp(url, data, fnc){

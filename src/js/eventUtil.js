@@ -109,6 +109,33 @@ var EventUtil = {
         } else if (window.clipboardData) {
             window.clipboardData.setData("text", value);
         }
+    },
+    /*
+    * 获取相对于html的offsetLeft
+    * */
+    getoffset(node){
+        var offset = {
+            "offsetTop": node.offsetTop,
+            "offsetLeft": node.offsetLeft
+        };
+        if (node.offsetParent !== null) {
+            var current = arguments.callee(node.offsetParent)
+
+            offset.offsetTop += current.offsetTop;
+            offset.offsetLeft += current.offsetLeft;
+        }
+        return offset;
+    },
+
+    /*
+    *获取 文档的实际大小
+    * */
+
+    getDocSize(){
+        return {
+            "width": Math.max(document.documentElement.scrollWidth, document.documentElement.clientWidth),
+            "height": Math.max(document.documentElement.scrollHeight, document.documentElement.clientHeight)
+        }
     }
 }
 

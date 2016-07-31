@@ -16,16 +16,6 @@ var Util = function () {
     }
 
     _createClass(Util, [{
-        key: "extend",
-        value: function extend(src, dest) {
-
-            if ((typeof dest === "undefined" ? "undefined" : _typeof(dest)) !== "object") return dest;
-
-            for (var i in dest) {
-                src[i] = dest[i];
-            }
-        }
-    }, {
         key: "serializeObject",
         value: function serializeObject(obj, origin) {
             if (!(obj instanceof Object)) return;
@@ -105,6 +95,36 @@ var Util = function () {
             url += url.indexOf("?") > -1 ? "?" : "&";
             url += encodeURIComponent(name) + "=" + encodeURIComponent(value);
             return url;
+        }
+    }, {
+        key: "extend",
+        value: function extend(src, dest) {
+            if ((typeof dest === "undefined" ? "undefined" : _typeof(dest)) !== "object") return dest;
+
+            for (var i in dest) {
+                src[i] = dest[i];
+            }
+        }
+    }, {
+        key: "getQueryList",
+        value: function getQueryList() {
+            var obj = null;
+            if (location.href.indexOf("?") > -1) {
+                var sSearch = decodeURIComponent(location.search.substring(1));
+                var i = 0,
+                    item,
+                    aAim;
+                obj = {};
+                var aArr = sSearch.length ? sSearch.split("&") : [];
+                for (; aArr.length && i < aArr.length; i++) {
+                    item = aArr[i];
+                    aAim = item.split("=");
+                    if (aAim.length === 2) {
+                        obj[aAim[0]] = aAim[1];
+                    }
+                }
+            }
+            return obj;
         }
     }]);
 
