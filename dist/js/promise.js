@@ -38,7 +38,6 @@ var Promise = function (_EventEmitter) {
     _createClass(Promise, [{
         key: "then",
         value: function then(success, error, progress) {
-
             if (_util2.default.isFunction(success)) {
                 this.on("success", success);
             }

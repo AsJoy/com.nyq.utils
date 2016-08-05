@@ -318,7 +318,6 @@ var Promise = function (_EventEmitter) {
     _createClass(Promise, [{
         key: "then",
         value: function then(success, error, progress) {
-
             if (_util2.default.isFunction(success)) {
                 this.on("success", success);
             }
@@ -383,14 +382,13 @@ function result(count) {
   }
 }
 
-/*
-let def = new Deferred();
-def.all(Arr).then(function(){
-  console.log(arguments[0])
-}, function() {
-   console.log("error",arguments)
-})
-*/
+var def = new _deferred2.default();
+
+def.all(Arr).then(function () {
+  console.log(arguments[0]);
+}, function () {
+  console.log("error", arguments);
+});
 },{"../ajax.js":1,"../deferred.js":2}],6:[function(require,module,exports){
 "use strict";
 

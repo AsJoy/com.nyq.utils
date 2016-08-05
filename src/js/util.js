@@ -102,7 +102,6 @@ class Util  {
     }
     return obj;
   }
-
 }    
 
 export default new Util(); 

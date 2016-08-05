@@ -10,7 +10,6 @@ class Promise extends EventEmitter{
  
 
   then(success, error, progress){
-
       if (Util.isFunction(success)) {
           this.on("success",success);
       }

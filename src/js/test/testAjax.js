@@ -41,11 +41,10 @@ function result(count) {
   }
 }
 
-/*
 let def = new Deferred();
+
 def.all(Arr).then(function(){
   console.log(arguments[0])
 }, function() {
    console.log("error",arguments)
 })
-*/
