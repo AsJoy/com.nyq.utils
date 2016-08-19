@@ -1,6 +1,62 @@
 "use strict";
 
 class Util  {
+  bind(fun, context) {
+  
+    var prevArgs = Array.proyotype.slice.call(arguments, 1);
+
+    return function () {
+      var nextArgs = Array.proyotype.slice.call(arguments, 0);
+      var args = prevArgs.contact(nextArgs);
+      fun.apply(context, args);
+    }
+  }
+  extends(sub, sup) {
+    var obj = function() {this.constructor = sub};
+    obj.prototype = sup.prototype;
+    return (sub.prototype = new obj());
+  }
+  throttle(fn, time, option) {
+    var timer = 0;
+    var context = (option && option.context) || this;
+    return function (...args) {
+      if (timer) return;
+      timer = setTimeout(() => {
+        fn.apply(context, args);
+        timer = 0;
+      }, time);
+    }
+  }
+  getURl(url,name,value){
+      url += url.indexOf("?")>-1? "?":"&";
+      url += encodeURIComponent(name)+"="+encodeURIComponent(value);
+      return url;
+  }
+  extend(src,dest){
+    if (typeof dest!== "object") 
+      return dest;
+    
+    for (let i in dest){
+      src[i] = dest[i];
+    }
+  }
+  getQueryList(){
+    var obj = null;
+    if (location.href.indexOf("?") > -1) {
+      var sSearch = decodeURIComponent(location.search.substring(1));
+      var i = 0,item,aAim;
+      obj = {};
+      var aArr = sSearch.length?  sSearch.split("&"):[];
+      for ( ; aArr.length && i < aArr.length ; i ++ ) {
+        item = aArr[i];
+        aAim = item.split("=");
+        if (aAim.length === 2) {
+            obj[aAim[0]] = aAim[1];
+        }
+      }
+    }
+    return obj;
+  }
   serializeObject(obj, origin) {
       if ( !(obj instanceof Object)) return;
       var result="";
@@ -72,36 +128,6 @@ class Util  {
       return  Object.prototype.toString.call(array) === "[object Array]";
   }
 
-  getURl(url,name,value){
-      url += url.indexOf("?")>-1? "?":"&";
-      url += encodeURIComponent(name)+"="+encodeURIComponent(value);
-      return url;
-  }
-  extend(src,dest){
-    if (typeof dest!== "object") 
-      return dest;
-    
-    for (let i in dest){
-      src[i] = dest[i];
-    }
-  }
-  getQueryList(){
-    var obj = null;
-    if (location.href.indexOf("?") > -1) {
-      var sSearch = decodeURIComponent(location.search.substring(1));
-      var i = 0,item,aAim;
-      obj = {};
-      var aArr = sSearch.length?  sSearch.split("&"):[];
-      for ( ; aArr.length && i < aArr.length ; i ++ ) {
-        item = aArr[i];
-        aAim = item.split("=");
-        if (aAim.length === 2) {
-            obj[aAim[0]] = aAim[1];
-        }
-      }
-    }
-    return obj;
-  }
 }    
 
 export default new Util(); 
